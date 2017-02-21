@@ -24,7 +24,7 @@ app.nquestions=len(questions)
    # shuffle(questions[item]['options'])   
 #
 #
-# Route for the URL / accepting GET and POST methods
+# Route for the URL /python accepting GET and POST methods
 # We are using session variables to keep track of the current question
 # the user is in and show him just that question even if he reloads the page
 # or opens the page in a new tab.
@@ -33,11 +33,10 @@ def index():
 #	
   if request.method == "POST":
     
-    # The data has been submitted from the form via POST request.
-    # Now we need to validate it.
+    # The data has been submitted via POST request.
     #
     entered_answer = request.form.get('answer_python', '')
-    # print(entered_answer)     
+#   
     if not entered_answer:
       flash("Please choose an answer", "error") # Show error if no answer entered
     
@@ -62,7 +61,7 @@ def index():
         redirect(url_for('index'))
       
       else:
-        # else redirect to the success template as the quiz is complete.
+        # else redirect to the summary template as the quiz is complete.
         py_summary["wrong"]=list(set(py_summary["wrong"]))
         py_summary["correct"]=list(set(py_summary["correct"]))		
         return render_template("end_miniquiz.html",summary=py_summary)
@@ -76,14 +75,12 @@ def index():
   elif session["current_question"] not in questions:
     # If the current question number is not available in the questions
     # dictionary, it means that the user has completed the quiz. So show
-    # the success page.
+    # the summary page.
     py_summary["wrong"]=list(set(py_summary["wrong"]))
     py_summary["correct"]=list(set(py_summary["correct"]))	
     return render_template("end_miniquiz.html",summary=py_summary)
   
-  # If the request is a GET request or the answer wasn't entered or the entered
-  # answer is wrong, show the current questions with messages, if any.
-  # print("get new0, %s"%session)
+  # If the request is a GET request 
   currentN=int(session["current_question"])   
   currentQ =  questions[session["current_question"]]["question"]
   a1, a2, a3,a4 = questions[session["current_question"]]["options"] 
@@ -99,7 +96,7 @@ def check_answer():
 #    session["current_question"]=str(py_summary["curretq"])
     if "current_question" not in session:
         session["current_question"] = "1"		
-    # print("check new0, %s"%session)
+    #
 #	
     currentN = int(session["current_question"])   
     currentQ = questions[session["current_question"]]["question"]
@@ -109,15 +106,13 @@ def check_answer():
     curr_answer=request.form['answer_python']
     correct_answer=questions[session["current_question"]]["answer"]
     tip=questions[session["current_question"]]["tip"]
-#
+# track quiz check history
     f = open('mini_log.txt','a') #a is for append
     f.write('%s\n'%(datetime.now().strftime("%A, %d. %B %Y %I:%M%p")))		
     f.write('Current number: %s, '%(currentN))			
     f.write('Current question: %s\n'%(currentQ))	
     f.write('Correct answer: %s\n'%(correct_answer))
     f.write('Current selection: %s\n'%(curr_answer))	#	
-#
-#	
     f.close()
 #
     if curr_answer == correct_answer[:len(curr_answer)]: the_color6="Green"
