@@ -1,0 +1,24 @@
+<!doctype html>
+<title>A short quiz</title>
+<link rel=stylesheet type=text/css href='{{ url_for('static',filename='style_miniquiz.css')}}'>
+<div class=page>
+  <h1>A short quiz</h1>
+  <div class=metanav>
+
+  
+<h4>
+Thank you for participating!
+</h4>
+
+<p>
+Correct answers: 
+<label for="correcta" >{{summary["correct"]}}</label> 
+</p>
+<p>
+Wrong answers: 
+<label for="wronga" >{{summary["wrong"]}}</label> 
+</p>
+
+
+</div>
+

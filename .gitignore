@@ -1,0 +1,9 @@
+ENV
+SS
+*.pyc
+staticfiles
+.env
+db.sqlite3
+.git.bat
+*.log
+mini_log.txt

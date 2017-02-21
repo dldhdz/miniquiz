@@ -1,0 +1,29 @@
+<!doctype html>
+<title>A short python quiz</title>
+<link rel=stylesheet type=text/css href='{{ url_for('static',filename='style_miniquiz.css')}}'>
+<div>
+  <h1>Question #{{num}} of {{ntot}}</h1>
+
+  <div>
+<br /> <br />
+{{question}}
+
+<h4>
+<form id='answerform_python' method='post'  > <!-- action must match your next URL -->
+   <p>
+   Answer: <br /> <br /> <br />
+   <input type='radio' name='answer_python' id="r1" checked value={{ans1}} /> <label for="r1" style="border:2px solid #ccc;border-style: groove;padding: 10px;">{{ans1}}</label> <br /> <br /> <br />
+   <input type='radio' name='answer_python' id="r2" value={{ans2}} /> <label for="r2" style="border:2px solid #ccc;border-style: groove;padding: 10px;">{{ans2}}</label> <br /> <br /> <br />
+   <input type='radio' name='answer_python' id="r3" value={{ans3}} /> <label for="r3" style="border:2px solid #ccc;border-style: groove;padding: 10px;">{{ans3}}</label> <br /> <br /> <br />
+   <input type='radio' name='answer_python' id="r4" value={{ans4}} /> <label for="r4" style="border:2px solid #ccc;border-style: groove;padding: 10px;">{{ans4}}</label> <br /> <br /> <br />   
+   </p>
+
+   <p>
+   <input type='submit' value='Check' id="r6" formaction="/checkform_python" />    
+   <input type='submit' value='Next' id="r7" formaction="/python" /> <!--the 'value' is the word that will appear on your button.-->
+   </p>
+</form>
+</h4>
+
+</div>
+</div>
